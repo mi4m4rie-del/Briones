@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthony Briones — Solar Engineering Designer & Technical Drafting Specialist</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b0c10;
+            --surface: rgba(20, 22, 27, 0.9);
+            --surface-hover: rgba(27, 30, 38, 0.96);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent: #d4af37; /* Sophisticated Bronze / Gold */
+            --accent-glow: rgba(212, 175, 55, 0.12);
+            --border: #222630;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                linear-gradient(to bottom, rgba(11, 12, 16, 0.85), rgba(11, 12, 16, 0.96)),
+                url('https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791065043/ce7f2faf40afc7981beefeac8be5b0a2_toyjkq.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 4rem 1.5rem;
+        }
+
+        /* Prevents background body scrolling when a modal is active */
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        .wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .page-view {
+            display: none;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+
+        /* Navigation Switcher */
+        .nav-bar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+        }
+
+        .nav-bar.story-mode {
+            justify-content: space-between;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        /* Header Grid Layout */
+        header {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 3.5rem;
+            background: var(--surface);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .profile-img-container {
+                margin: 0 auto;
+            }
+            .contact-bar {
+                justify-content: center;
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            background: var(--accent-glow);
+            padding: 0.35rem 0.85rem;
+            border-radius: 4px;
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            font-weight: 600;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 4.5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.01em;
+        }
+
+        .meta-details {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-details strong {
+            color: var(--text-main);
+        }
+
+        /* Profile Picture Styling */
+        .profile-img-container {
+            width: 100%;
+            max-width: 280px;
+            aspect-ratio: 1/1;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            background: var(--surface);
+            position: relative;
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(15%) contrast(105%);
+        }
+
+        .contact-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-bar span {
+            color: var(--text-main);
+        }
+
+        /* Resume Action Button */
+        .resume-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+        }
+
+        .resume-action-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 500;
+        }
+
+        h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Human Machine Callout Banner */
+        .human-machine-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .human-machine-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent);
+        }
+
+        .human-machine-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.7rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .hm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .hm-col h4 {
+            font-size: 0.95rem;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+
+        .hm-col p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Interactive Hub */
+        .interactive-hub {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .hub-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .hub-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .hub-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .hub-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Portfolio Samples Grid */
+        .portfolio-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .portfolio-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .portfolio-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+        }
+
+        .portfolio-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .portfolio-img-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .portfolio-img-container {
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #000;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .portfolio-img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0.9;
+            transition: transform 0.3s, opacity 0.2s;
+        }
+
+        .portfolio-img-container:hover img {
+            transform: scale(1.02);
+            opacity: 1;
+        }
+
+        .portfolio-img-container::after {
+            content: "🔍 Click to Expand";
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.75);
+            color: var(--accent);
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            pointer-events: none;
+        }
+
+        /* Modal Popups */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #14161b;
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            padding: 2.5rem;
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+        }
+
+        .modal-content h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: var(--text-main);
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .lightbox-img-box img {
+            max-width: 95%;
+            max-height: 90vh;
+            border-radius: 6px;
+            border: 1px solid var(--accent);
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Skills Grid inside Modal */
+        .skills-list-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-badge-item {
+            background: #1b1e26;
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .skill-badge-item span.icon {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        /* Tools Logo Grid */
+        .tools-logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 1rem;
+        }
+
+        .tool-logo-card {
+            background: #1b1e26;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: border-color 0.2s;
+        }
+
+        .tool-logo-card:hover {
+            border-color: var(--accent);
+        }
+
+        .tool-logo-card img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .tool-logo-card span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Experience Timeline */
+        .job-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .job-date {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-family: monospace;
+        }
+
+        .job-company {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.25rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        ul li::before {
+            content: "▪";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.75rem;
+            top: 2px;
+        }
+
+        /* Cinematic Storytelling Page with Animation */
+        @keyframes fadeInStory {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .story-container {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3.5rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            animation: fadeInStory 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .story-container h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        .story-chapter {
+            margin-bottom: 2.5rem;
+        }
+
+        .story-chapter h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.03em;
+        }
+
+        .story-container p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.9;
+        }
+
+        .highlight-quote {
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #ffffff;
+            font-size: 1.15rem;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            margin-top: 4rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Dedicated Professional Resume Layout Modal */
+        #resume-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        #resume-modal.active {
+            display: flex;
+        }
+
+        .resume-sheet {
+            background: #ffffff;
+            color: #111111;
+            width: 100%;
+            max-width: 850px;
+            height: 90vh;
+            border-radius: 8px;
+            padding: 3rem;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: left;
+        }
+
+        .resume-header {
+            border-bottom: 2px solid #222;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .resume-header h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 22pt;
+            color: #111;
+            font-weight: bold;
+            margin-bottom: 0.2rem;
+        }
+
+        .resume-header .res-subtitle {
+            font-size: 11pt;
+            color: #444;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .resume-contact-info {
+            font-size: 9.5pt;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-contact-info span {
+            margin-right: 1.5rem;
+        }
+
+        .resume-section-title {
+            font-size: 11pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 1px solid #999;
+            padding-bottom: 0.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: #111;
+            letter-spacing: 0.05em;
+        }
+
+        .resume-skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+            font-size: 9.5pt;
+            color: #333;
+        }
+
+        .resume-skills-grid div {
+            flex: 1 1 45%;
+        }
+
+        .resume-tools-list {
+            font-size: 9.5pt;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .resume-job {
+            margin-bottom: 1.2rem;
+        }
+
+        .resume-job-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 10pt;
+            color: #111;
+        }
+
+        .resume-job-company {
+            font-size: 9.5pt;
+            color: #444;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .resume-job ul {
+            list-style-type: disc;
+            padding-left: 1.2rem;
+        }
+
+        .resume-job ul li {
+            font-size: 9pt;
+            color: #333;
+            margin-bottom: 0.25rem;
+            padding-left: 0;
+        }
+
+        .resume-job ul li::before {
+            content: none !important;
+        }
+
+        .res-actions-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        /* Print Styling specifically for the clean Resume Modal */
+        @media print {
+            body * {
+                visibility: hidden !important;
+            }
+            #resume-modal, #resume-modal * {
+                visibility: visible !important;
+            }
+            #resume-modal {
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                background: none !important;
+                padding: 0 !important;
+                inset: auto !important;
+            }
+            .resume-sheet {
+                box-shadow: none !important;
+                height: auto !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+            .res-actions-bar {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- Top Navigation Switcher -->
+        <div id="nav-bar-container" class="nav-bar">
+            <button id="back-btn" class="nav-btn" style="display: none;" onclick="switchPage('home')">← Back to Portfolio</button>
+            <button class="nav-btn" onclick="switchPage('story')">Get to Know Me More →</button>
+        </div>
+
+        <!-- PAGE 1: HOME & RELEVANT EXPERIENCE -->
+        <div id="page-home" class="page-view active">
+            <!-- Header -->
+            <header>
+                <div class="header-text">
+                    <div class="badge">Systems Architecture & Precision Design</div>
+                    <h1>Anthony Briones</h1>
+                    <div class="subtitle">Solar Engineering Designer, CAD Drafting Specialist, & Systems Operations Professional</div>
+                    <div class="meta-details">
+                        <strong>Specialization:</strong> Solar Engineering Design, CAD Drafting, & Technical Operations<br>
+                        <strong>Academic Background:</strong> BS Information Technology (Graduated 2015) — Quezon City Polytechnic University<br>
+                        <strong>Date of Birth:</strong> July 11, 1994
+                    </div>
+                    <div class="contact-bar">
+                        <span>📩 briones117anthony@gmail.com</span>
+                        <span>📞 +63 951 606 3958</span>
+                        <span>📍 Bacolod City, PH</span>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <button class="resume-action-btn" onclick="openResumeModal()">📄 Generate Professional Resume</button>
+                    </div>
+                </div>
+                <div class="profile-img-container">
+                    <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791059882/5120_vxcdbl.png" alt="Anthony Briones">
+                </div>
+            </header>
+
+            <!-- The Human Machine Edge -->
+            <section>
+                <h2>Strategic Advantage</h2>
+                <div class="human-machine-card">
+                    <h3>The "Human Machine" Edge</h3>
+                    <div class="hm-grid">
+                        <div class="hm-col">
+                            <h4>Lightning-Fast Execution</h4>
+                            <p>Consistently engineered accurate, client-ready solar models in a matter of 2–3 minutes, driven by deep mastery of advanced design software.</p>
+                        </div>
+                        <div class="hm-col">
+                            <h4>Uncompromising Accuracy</h4>
+                            <p>Speed never compromises precision. Every proposal, NTP submission, and CAD drawing is built strictly to rigorous industry specifications.</p>
+                        </div>
+                        <div class="hm-col">
+                            <h4>Overcoming Bottlenecks</h4>
+                            <p>Seamlessly navigating software constraints (like Scanifly and Aurora) to ensure maximum operational output with zero friction.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Hub (Skills, Tools, & Certifications Popups) -->
+            <section>
+                <h2>Professional Credentials & Tech Stack</h2>
+                <div class="interactive-hub">
+                    <div class="hub-card" onclick="openModal('modal-skills')">
+                        <h3>🛠️ Core Skills</h3>
+                        <p>Click to view visual communication, BIM modeling, layout drafting & project management expertise.</p>
+                    </div>
+                    <div class="hub-card" onclick="openModal('modal-tools')">
+                        <h3>⚡ Software & Tools</h3>
+                        <p>Explore software proficiency with official visual brand logos (AutoCAD, Revit, Aurora, etc.).</p>
+                    </div>
+                    <div class="hub-card" onclick="openModal('modal-cert')">
+                        <h3>📜 Certifications</h3>
+                        <p>View Autodesk Revit MEPF Certification (Microcadd Cubao Authorized Training Center).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Portfolio Samples -->
+            <section>
+                <h2>Portfolio Samples (Click to Expand)</h2>
+                <div class="portfolio-grid">
+                    
+                    <div class="portfolio-card">
+                        <h3>Solar Residential Design (Open Solar)</h3>
+                        <p>Planning and creating a customized solar power system for a home. The goal is to design a setup that efficiently converts sunlight into electricity, tailored to a homeowner’s energy needs, roof structure, budget, and local regulations.</p>
+                        <div class="portfolio-img-container" onclick="openLightbox('https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791062731/Screenshot_2026-10-03_162314_nmyakq.png')">
+                            <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791062731/Screenshot_2026-10-03_162314_nmyakq.png" alt="OpenSolar Design">
+                        </div>
+                    </div>
+
+                    <div class="portfolio-card">
+                        <h3>Aurora Shade Report & Residential Design</h3>
+                        <p>Presenting comprehensive annual shading reports with calculated energy offset figures, alongside 3D models showcasing roof architecture and environmental conditions for precise solar planning.</p>
+                        <div class="portfolio-img-grid">
+                            <div class="portfolio-img-container" onclick="openLightbox('https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791062731/Screenshot_2026-10-03_162405_c7l1rh.png')">
+                                <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791062731/Screenshot_2026-10-03_162405_c7l1rh.png" alt="Aurora Shade Report">
+                            </div>
+                            <div class="portfolio-img-container" onclick="openLightbox('https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791062731/Screenshot_2026-10-03_162421_u7pb4s.png')">
+                                <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791062731/Screenshot_2026-10-03_162421_u7pb4s.png" alt="Aurora Residential Design">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Relevant Professional Experience -->
+            <section>
+                <h2>Relevant Professional Experience</h2>
+                
+                <div class="job-card">
+                    <div class="job-header">
+                        <span class="job-title">Virtual Assistant</span>
+                        <span class="job-date">2025 – 2026</span>
+                    </div>
+                    <div class="job-company">Sunnymac Solar</div>
+                    <ul>
+                        <li>Created complex proposals with pricing utilizing Aurora design tools and Enfin pricing frameworks.</li>
+                        <li>Collaborated directly with sales reps to manage proposal requests, execution instructions, and missing documentation.</li>
+                        <li>Managed end-to-end documentation submissions for Notice to Proceed (NTP).</li>
+                        <li>Cross-referenced pricing accuracy against Home Depot data benchmarks.</li>
+                        <li>Updated layout panels on Scanifly to match precise financing contracts.</li>
+                        <li>Monitored approval life-cycles, tracked pending workflows, and escalated financial rejections for rapid resubmission.</li>
+                    </ul>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-header">
+                        <span class="job-title">OpenSolar Designer</span>
+                        <span class="job-date">May 2023 – March 2025</span>
+                    </div>
+                    <div class="job-company">Exact Solar (Philadelphia, USA — Remote)</div>
+                    <ul>
+                        <li>Acted as the strategic writer behind Sales Engineers, crafting high-impact, data-driven proposals that accelerated deal closures.</li>
+                        <li>Translated complex engineering specifications into clean, client-friendly terminology.</li>
+                    </ul>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-header">
+                        <span class="job-title">Proposal Writer & Lead Agent</span>
+                        <span class="job-date">March 2021 – May 2023</span>
+                    </div>
+                    <div class="job-company">Homesourced INC / EnergySage (Aurora, Mandaue City)</div>
+                    <ul>
+                        <li>Produced 6–8 accurate, client-ready models per hour using Aurora Solar, driving a 20% increase in project delivery timelines.</li>
+                        <li>Promoted to Lead Agent to mentor team members on optimized execution strategies and workflows.</li>
+                    </ul>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-header">
+                        <span class="job-title">AutoCAD Designer</span>
+                        <span class="job-date">October 2020 – March 2021</span>
+                    </div>
+                    <div class="job-company">Fairtrade Outsourcing / Aurora (Bacolod City)</div>
+                    <ul>
+                        <li>Engineered over 150+ precise technical drawings and photorealistic renders using AutoCAD and Aurora software.</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- PAGE 2: GET TO KNOW ME MORE (CINEMATIC STORYTELLING PAGE) -->
+        <div id="page-story" class="page-view">
+            <section>
+                <div class="story-container">
+                    <h3>The Journey Behind the Work</h3>
+                    
+                    <div class="story-chapter">
+                        <h4>Chapter I: The Foundation of Rigor</h4>
+                        <p>My professional story began back in 2015 when I earned my Bachelor of Science in Information Technology from Quezon City Polytechnic University. Fresh out of college, I stepped into my On-the-Job Training (OJT) at Asia Alliance Mining Resources Corporation (AAMRC) as a data encoder. That experience instilled in me a fundamental truth that has guided my career ever since: absolute precision and data integrity are non-negotiable.</p>
+                    </div>
+
+                    <div class="story-chapter">
+                        <h4>Chapter II: Keeping Systems Alive</h4>
+                        <p>Eager to dive deeper into technical infrastructure, my first corporate role took me to Bonifacio Global City (BGC) at EZ Sistemo Integration Technology Corporation as a Support Tech. Stationed right in the heart of fast-paced operations, my core mission was monitoring the daily status of automated parking systems. Whenever anomalies occurred, I deployed rapid-response troubleshooting to guarantee uninterrupted daily traffic flow and system reliability.</p>
+                    </div>
+
+                    <div class="story-chapter">
+                        <h4>Chapter III: The "Field Machine" Era</h4>
+                        <p>Following that, I embarked on a rigorous 5-year tenure as a Field Technician for FBM Technology Solutions, a premier bingo machine manufacturer. This era of my life was defined by motion. Assigned across diverse cities and provinces nationwide, I traveled constantly to ensure that deployed gaming terminals remained fully operational. From diagnosing hardware failures and managing complex system prize configurations to meticulous maintenance—including component-level motherboard cleaning and repairs—I lived on the frontline of hardware troubleshooting.</p>
+                    </div>
+
+                    <div class="story-chapter">
+                        <h4>Chapter IV: Settling Roots and Finding My Niche</h4>
+                        <p>Seeking a new chapter, I decided to relocate and settle down in the peaceful province of Negros Occidental. It was here that my path converged with CAD drafting. I realized that my technical IT background, combined with a sharp eye for visual layouts, made technical design an instinctive fit. What started as an exploration quickly evolved into the core professional niche where I truly thrive today.</p>
+                    </div>
+
+                    <div class="story-chapter">
+                        <h4>Chapter V: The Flow State & Personal Anchors</h4>
+                        <div class="highlight-quote">
+                            "Designing isn't just work for me; it is a deep state of flow. When I lock into a project, I get completely indulged in the moment—which is why high-speed, flawless execution comes naturally."
+                        </div>
+                        <p>While past recommendations and elite delivery speeds speak volumes about my technical work ethic, my personal life provides the grounding balance. I find deep fulfillment in rewarding my milestones through meaningful life chapters—symbolized by collecting custom tattoos that mark significant milestones of personal growth. Back at home, I am happily married, sharing my daily life with my cats, who provide endless emotional grounding and daily joy.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- MODAL POPUPS -->
+        <!-- 1. Skills Modal -->
+        <div id="modal-skills" class="modal-overlay" onclick="closeModal('modal-skills')">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <button class="modal-close" onclick="closeModal('modal-skills')">&times;</button>
+                <h3>Core Professional Skills</h3>
+                <div class="skills-list-grid">
+                    <div class="skill-badge-item"><span class="icon">✦</span> Visual Communication</div>
+                    <div class="skill-badge-item"><span class="icon">✦</span> Creative Design Layouts</div>
+                    <div class="skill-badge-item"><span class="icon">✦</span> Concept Development</div>
+                    <div class="skill-badge-item"><span class="icon">✦</span> Network Management</div>
+                    <div class="skill-badge-item"><span class="icon">✦</span> Project Management</div>
+                    <div class="skill-badge-item"><span class="icon">✦</span> Tech-Savvy Operations</div>
+                    <div class="skill-badge-item"><span class="icon">✦</span> Wireframing & Prototyping</div>
+                    <div class="skill-badge-item"><span class="icon">✦</span> Design Implementation</div>
+                    <div class="skill-badge-item"><span class="icon">✦</span> Building Information Modeling (BIM - Revit)</div>
+                    <div class="skill-badge-item"><span class="icon">✦</span> Computer Hardware & Software Repair</div>
+                    <div class="skill-badge-item"><span class="icon">✦</span> Precision CAD Drafting</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Tools & Tech Stack Modal (with Custom Cloudinary Logos) -->
+        <div id="modal-tools" class="modal-overlay" onclick="closeModal('modal-tools')">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <button class="modal-close" onclick="closeModal('modal-tools')">&times;</button>
+                <h3>Software & Tools Proficiency</h3>
+                <div class="tools-logo-grid">
+                    <div class="tool-logo-card">
+                        <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791066482/autocad_glei6w.png" alt="AutoCAD">
+                        <span>AutoCAD</span>
+                    </div>
+                    <div class="tool-logo-card">
+                        <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791066483/revit_j7ofer.png" alt="Revit">
+                        <span>Revit</span>
+                    </div>
+                    <div class="tool-logo-card">
+                        <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791066481/aurora_soalr_hrpnx0.png" alt="Aurora Solar">
+                        <span>Aurora Solar</span>
+                    </div>
+                    <div class="tool-logo-card">
+                        <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791066480/Energysage_logo_xuwq3d.png" alt="EnergySage">
+                        <span>EnergySage</span>
+                    </div>
+                    <div class="tool-logo-card">
+                        <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791066480/exact_solar_zbqyxe.png" alt="Exact Solar">
+                        <span>Exact Solar</span>
+                    </div>
+                    <div class="tool-logo-card">
+                        <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791066479/scanifly_q1lymh.png" alt="Scanifly">
+                        <span>Scanifly</span>
+                    </div>
+                    <div class="tool-logo-card">
+                        <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791066478/palmetto_fkzsgs.jpg" alt="Palmetto">
+                        <span>Palmetto</span>
+                    </div>
+                    <div class="tool-logo-card">
+                        <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791066477/google_workplace_qkumc8.png" alt="Google Suite">
+                        <span>Google Suite</span>
+                    </div>
+                    <div class="tool-logo-card">
+                        <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791066467/slack_vsbnau.webp" alt="Slack">
+                        <span>Slack</span>
+                    </div>
+                    <div class="tool-logo-card">
+                        <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791066470/loom_y95lfz.png" alt="Loom">
+                        <span>Loom</span>
+                    </div>
+                    <div class="tool-logo-card">
+                        <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791066470/teams_app_bj0l5o.png" alt="Teams">
+                        <span>MS Teams</span>
+                    </div>
+                    <div class="tool-logo-card">
+                        <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791066468/basecamp_ttmj5e.png" alt="Basecamp">
+                        <span>Basecamp</span>
+                    </div>
+                    <div class="tool-logo-card">
+                        <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791066467/chatgpt_vhcbzc.png" alt="ChatGPT">
+                        <span>ChatGPT</span>
+                    </div>
+                    <div class="tool-logo-card">
+                        <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791066476/skye_sb5v67.svg" alt="Skype">
+                        <span>Skype</span>
+                    </div>
+                    <div class="tool-logo-card">
+                        <img src="https://res.cloudinary.com/dkmv3fmsa/image/upload/v1791066467/ring_centra_efxise.png" alt="RingCentral">
+                        <span>RingCentral</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Certification Modal with Link to Real Drive Certificate -->
+        <div id="modal-cert" class="modal-overlay" onclick="closeModal('modal-cert')">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <button class="modal-close" onclick="closeModal('modal-cert')">&times;</button>
+                <h3>Autodesk Authorized Training Certificate</h3>
+                <div style="background:#1b1e26; border:1px solid var(--border); padding:2rem; border-radius:8px; text-align:left;">
+                    <p style="color:var(--accent); font-weight:600; margin-bottom:0.5rem;">Certificate No: AP0043098297615606663</p>
+                    <h4 style="font-family:'Cinzel', serif; font-size:1.2rem; color:#fff; margin-bottom:1rem;">Autodesk Revit MEPF (Revit MEP 2025)</h4>
+                    <p><strong>Trainee:</strong> Anthony R. Briones</p>
+                    <p><strong>Course Duration:</strong> 33–40 Hours</p>
+                    <p><strong>Completion Date:</strong> May 17, 2025</p>
+                    <p><strong>Instructor:</strong> John Carlo Merca de Jesus</p>
+                    <p style="margin-top:1rem; color:var(--text-muted); font-size:0.85rem;">Issued by: Microcadd Cubao (Main Site) — Autodesk Authorized Training Center</p>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://drive.google.com/file/d/1olBpZef9pf2K3htmZFAlq9PhIu1Cuje8/view" target="_blank" class="nav-btn" style="display:inline-block; text-decoration:none; text-align:center;">View Official Certificate File →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lightbox Modal Container for Portfolio Images -->
+        <div id="lightbox" class="modal-overlay" onclick="closeLightbox()">
+            <button class="modal-close">&times;</button>
+            <div class="lightbox-img-box">
+                <img id="lightbox-img" src="" alt="Expanded View">
+            </div>
+        </div>
+
+        <!-- CLEAN TRADITIONAL RESUME MODAL -->
+        <div id="resume-modal" onclick="closeResumeModal()">
+            <div class="resume-sheet" onclick="event.stopPropagation()">
+                
+                <div class="res-actions-bar">
+                    <button class="nav-btn" style="background:#111; color:#fff; border-color:#111;" onclick="window.print()">🖨️ Print / Save as PDF</button>
+                    <button class="modal-close" style="position:static; font-size:1.8rem; color:#333;" onclick="closeResumeModal()">&times;</button>
+                </div>
+
+                <div class="resume-header">
+                    <h1>Anthony Briones</h1>
+                    <div class="res-subtitle">Solar Engineering Designer, CAD Drafting Specialist, & Systems Operations Professional</div>
+                    <div class="resume-contact-info">
+                        <span>📩 briones117anthony@gmail.com</span>
+                        <span>📞 +63 951 606 3958</span>
+                        <span>📍 Bacolod City, PH</span>
+                    </div>
+                    <div style="font-size: 9pt; color: #555; margin-top: 0.3rem;">
+                        <strong>Specialization:</strong> Solar Engineering Design, CAD Drafting, & Technical Operations | 
+                        <strong>Academic Background:</strong> BS Information Technology (Graduated 2015) — Quezon City Polytechnic University | 
+                        <strong>DOB:</strong> July 11, 1994
+                    </div>
+                </div>
+
+                <div class="resume-section-title">Core Professional Skills</div>
+                <div class="resume-skills-grid">
+                    <div>✦ Visual Communication</div>
+                    <div>✦ Creative Design Layouts</div>
+                    <div>✦ Concept Development</div>
+                    <div>✦ Network Management</div>
+                    <div>✦ Project Management</div>
+                    <div>✦ Tech-Savvy Operations</div>
+                    <div>✦ Wireframing & Prototyping</div>
+                    <div>✦ Design Implementation</div>
+                    <div>✦ Building Information Modeling (BIM - Revit)</div>
+                    <div>✦ Computer Hardware & Software Repair</div>
+                    <div>✦ Precision CAD Drafting</div>
+                </div>
+
+                <div class="resume-section-title">Software & Tools Proficiency</div>
+                <div class="resume-tools-list">
+                    AutoCAD, Revit, Aurora Solar, EnergySage, Exact Solar, Scanifly, Palmetto, Google Suite, Slack, Loom, MS Teams, Basecamp, ChatGPT, Skype, RingCentral
+                </div>
+
+                <div class="resume-section-title">Certifications & Training</div>
+                <div style="font-size: 9.5pt; color: #333; margin-bottom: 0.5rem;">
+                    <strong>Certificate No:</strong> AP0043098297615606663<br>
+                    <strong>Autodesk Revit MEPF (Revit MEP 2025)</strong><br>
+                    Trainee: Anthony R. Briones | Course Duration: 33–40 Hours | Completion Date: May 17, 2025<br>
+                    Instructor: John Carlo Merca de Jesus<br>
+                    Issued by: Microcadd Cubao (Main Site) — Autodesk Authorized Training Center<br>
+                    <a href="https://drive.google.com/file/d/1olBpZef9pf2K3htmZFAlq9PhIu1Cuje8/view" target="_blank" style="color:#0066cc;">View Official Certificate File</a>
+                </div>
+
+                <div class="resume-section-title">Relevant Professional Experience</div>
+                
+                <div class="resume-job">
+                    <div class="resume-job-header">
+                        <span>Virtual Assistant</span>
+                        <span>2025 – 2026</span>
+                    </div>
+                    <div class="resume-job-company">Sunnymac Solar</div>
+                    <ul>
+                        <li>Created complex proposals with pricing utilizing Aurora design tools and Enfin pricing frameworks.</li>
+                        <li>Collaborated directly with sales reps to manage proposal requests, execution instructions, and missing documentation.</li>
+                        <li>Managed end-to-end documentation submissions for Notice to Proceed (NTP).</li>
+                        <li>Cross-referenced pricing accuracy against Home Depot data benchmarks.</li>
+                        <li>Updated layout panels on Scanifly to match precise financing contracts.</li>
+                        <li>Monitored approval life-cycles, tracked pending workflows, and escalated financial rejections for rapid resubmission.</li>
+                    </ul>
+                </div>
+
+                <div class="resume-job">
+                    <div class="resume-job-header">
+                        <span>OpenSolar Designer</span>
+                        <span>May 2023 – March 2025</span>
+                    </div>
+                    <div class="resume-job-company">Exact Solar (Philadelphia, USA — Remote)</div>
+                    <ul>
+                        <li>Acted as the strategic writer behind Sales Engineers, crafting high-impact, data-driven proposals that accelerated deal closures.</li>
+                        <li>Translated complex engineering specifications into clean, client-friendly terminology.</li>
+                    </ul>
+                </div>
+
+                <div class="resume-job">
+                    <div class="resume-job-header">
+                        <span>Proposal Writer & Lead Agent</span>
+                        <span>March 2021 – May 2023</span>
+                    </div>
+                    <div class="resume-job-company">Homesourced INC / EnergySage (Aurora, Mandaue City)</div>
+                    <ul>
+                        <li>Produced 6–8 accurate, client-ready models per hour using Aurora Solar, driving a 20% increase in project delivery timelines.</li>
+                        <li>Promoted to Lead Agent to mentor team members on optimized execution strategies and workflows.</li>
+                    </ul>
+                </div>
+
+                <div class="resume-job">
+                    <div class="resume-job-header">
+                        <span>AutoCAD Designer</span>
+                        <span>October 2020 – March 2021</span>
+                    </div>
+                    <div class="resume-job-company">Fairtrade Outsourcing / Aurora (Bacolod City)</div>
+                    <ul>
+                        <li>Engineered over 150+ precise technical drawings and photorealistic renders using AutoCAD and Aurora software.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Anthony Briones. Built for High-Performance Operations.</p>
+        </footer>
+    </div>
+
+    <script>
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
+            document.getElementById('page-' + pageId).classList.add('active');
+            
+            const backBtn = document.getElementById('back-btn');
+            const navContainer = document.getElementById('nav-bar-container');
+            
+            if (pageId === 'story') {
+                backBtn.style.display = 'block';
+                navContainer.classList.add('story-mode');
+            } else {
+                backBtn.style.display = 'none';
+                navContainer.classList.remove('story-mode');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+
+        function openLightbox(imgSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = imgSrc;
+            lightbox.classList.add('active');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+
+        function openResumeModal() {
+            document.getElementById('resume-modal').classList.add('active');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeResumeModal() {
+            document.getElementById('resume-modal').classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+    </script>
+</body>
+</html>
